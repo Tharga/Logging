@@ -4,7 +4,7 @@ using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Moq;
+using NSubstitute;
 using Xunit;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
@@ -17,14 +17,14 @@ public class DynamicParameterLoggingTests
     {
         //Arrange
         var categoryName = "A";
-        var hostEnvironment = new Mock<IHostEnvironment>(MockBehavior.Strict);
-        hostEnvironment.SetupGet(x => x.EnvironmentName).Returns("A");
-        hostEnvironment.SetupGet(x => x.ApplicationName).Returns("B");
-        var configuration = new Mock<IConfiguration>(MockBehavior.Strict);
-        configuration.Setup(x => x.GetSection(It.IsAny<string>())).Returns((IConfigurationSection)null);
-        var loggingDefaultData = new Mock<ILoggingDefaultData>(MockBehavior.Strict);
-        loggingDefaultData.Setup(x => x.GetData()).Returns(new Dictionary<string, object> { { "A", "a" } });
-        var sut = new LogtailLogger(hostEnvironment.Object, configuration.Object, loggingDefaultData.Object, categoryName);
+        var hostEnvironment = Substitute.For<IHostEnvironment>();
+        hostEnvironment.EnvironmentName.Returns("A");
+        hostEnvironment.ApplicationName.Returns("B");
+        var configuration = Substitute.For<IConfiguration>();
+        configuration.GetSection(Arg.Any<string>()).Returns((IConfigurationSection)null);
+        var loggingDefaultData = Substitute.For<ILoggingDefaultData>();
+        loggingDefaultData.GetData().Returns(new Dictionary<string, object> { { "A", "a" } });
+        var sut = new LogtailLogger(hostEnvironment, configuration, loggingDefaultData, categoryName);
 
         //Act
         sut.Log(LogLevel.Information, null, "AAA {a}", "a1");
