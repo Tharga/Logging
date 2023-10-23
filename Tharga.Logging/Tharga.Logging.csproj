@@ -20,6 +20,6 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
-    <PackageReference Include="Tharga.Toolkit.Standard" Version="1.10.12" />
+    <PackageReference Include="Tharga.Toolkit.Standard" Version="1.10.14" />
   </ItemGroup>
 </Project>
