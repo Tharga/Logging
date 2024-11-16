@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Tharga.Toolkit;
 
 namespace Tharga.Logging;
 
@@ -25,7 +24,7 @@ public static class LogDataExtensions
         if (logEntry.Exception != null)
         {
             data.TryAdd("stackTrace", logEntry.Exception.StackTrace);
-            data.TryAdd("stackTraceHash", logEntry.Exception.StackTrace?.ToHash(HashExtensions.Style.Base64));
+            data.TryAdd("stackTraceHash", logEntry.Exception.StackTrace?.ToHash());
 
             foreach (DictionaryEntry entry in logEntry.Exception.Data)
             {

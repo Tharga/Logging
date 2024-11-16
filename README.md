@@ -1,4 +1,4 @@
-# Logging
+# Tharga Logging
 [![NuGet](https://img.shields.io/nuget/v/Tharga.Logging)](https://www.nuget.org/packages/Tharga.Logging)
 ![Nuget](https://img.shields.io/nuget/dt/Tharga.Logging)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
